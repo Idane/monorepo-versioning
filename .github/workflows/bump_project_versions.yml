@@ -1,5 +1,6 @@
 name: Bump project versions
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+permissions: write-all
 on: 
   push:
     branches:
@@ -17,3 +18,4 @@ jobs:
           pip install semver
           changed_projects=$(git diff-tree --no-commit-id --name-only -r HEAD | grep '^lib/[^/]\+' | cut -d '/' -f2 | uniq)
           python .github/scripts/bump_version.py $changed_projects
+          git push --tags
