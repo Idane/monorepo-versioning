@@ -24,6 +24,7 @@ def bump_version(version):
 
 if __name__ == "__main__":
     projects = sys.argv[1:]
+    print(f"Bumping projects {projects}")
     for project in projects:
         current_version = get_current_project_version(project)
         bumped = bump_version(current_version)
