@@ -21,8 +21,8 @@ jobs:
           echo $(git diff-tree --no-commit-id --name-only -r HEAD)
           changed_projects=$(git diff-tree --no-commit-id --name-only -r HEAD | grep '^lib/[^/]\+' | cut -d '/' -f2 | uniq)
           echo "Changed projects: $changed_projects"
-          if [ -z "$changed_folders" ]; then
-              echo "No changed folders in lib/"
+          if [ -z "$changed_projects" ]; then
+              echo "No changed projects in lib/"
               exit 0
           fi
           python .github/scripts/bump_version.py $changed_projects
