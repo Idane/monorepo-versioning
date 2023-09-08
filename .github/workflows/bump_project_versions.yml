@@ -14,4 +14,4 @@ jobs:
       - name: Bump project version
         run: |
           changed_projects=$(git diff-tree --no-commit-id --name-only -r HEAD | grep '^lib/[^/]\+' | cut -d '/' -f2 | uniq)
-          python ./github/scripts/bump_version.py $changed_projects
+          python .github/scripts/bump_version.py $changed_projects
