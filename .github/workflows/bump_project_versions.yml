@@ -14,8 +14,4 @@ jobs:
       - name: Bump project version
         run: |
           changed_projects=$(git diff-tree --no-commit-id --name-only -r HEAD | grep '^lib/[^/]\+' | cut -d '/' -f2 | uniq)
-          if [ -z "$changed_folders" ]; then
-              echo "No changed folders in lib/"
-              exit 0
-          fi
           python ./github/scripts/bump_version.py $changed_projects
