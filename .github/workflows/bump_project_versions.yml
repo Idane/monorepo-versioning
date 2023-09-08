@@ -13,5 +13,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Bump project version
         run: |
+          pip install GitPython
+          pip install semver
           changed_projects=$(git diff-tree --no-commit-id --name-only -r HEAD | grep '^lib/[^/]\+' | cut -d '/' -f2 | uniq)
           python .github/scripts/bump_version.py $changed_projects
