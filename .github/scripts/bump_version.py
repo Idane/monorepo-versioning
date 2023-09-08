@@ -6,7 +6,7 @@ import sys
 repo = git.Repo(".")
 
 def get_current_project_version(projectName):
-    print(f"Getting version for {f}")
+    print(f"Getting version for {projectName}")
     tags = list(filter(lambda tag: tag.name.startswith(projectName), repo.tags))
     if not tags:
         latest = "0.0.0"
