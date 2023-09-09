@@ -7,7 +7,7 @@ repo = git.Repo(".")
 
 def get_current_project_version(projectName):
     print(f"Getting version for {projectName}")
-    tags = list(filter(lambda tag: tag.startswith("v") and tag.name.endswith(projectName), repo.tags))
+    tags = list(filter(lambda tag: tag.name.startswith("v") and tag.name.endswith(projectName), repo.tags))
     if not tags:
         latest = "0.0.0"
     else:
@@ -28,4 +28,4 @@ if __name__ == "__main__":
     for project in projects:
         current_version = get_current_project_version(project)
         bumped = bump_version(current_version)
-        repo.create_tag(f"v{bumped}-{project}")
+        # repo.create_tag(f"v{bumped}-{project}")
