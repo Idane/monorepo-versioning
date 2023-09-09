@@ -1,0 +1,16 @@
+name: Publish
+run-name: Publishing TBD
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Bump project version
+        run: |
+          version=$(echo "$GITHUB_REF_NAME" | cut -d'-' -f1 | tr -d 'v')
+          project=$(echo "$GITHUB_REF_NAME" | cut -d'-' -f2-)
+          

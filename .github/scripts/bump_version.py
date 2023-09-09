@@ -11,8 +11,8 @@ def get_current_project_version(projectName):
     if not tags:
         latest = "0.0.0"
     else:
-        by_version = sorted(tags, key=lambda tag: tag.commit.committed_datetime)
-        tagName = by_version[-1].name
+        by_date = sorted(tags, key=lambda tag: tag.commit.committed_datetime)
+        tagName = by_date[-1].name
         _, latest = tagName.rsplit("-", 1)
     print(f"Current version for {projectName} is {latest}")
     return semver.Version.parse(latest)
