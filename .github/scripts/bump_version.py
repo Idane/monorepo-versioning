@@ -7,13 +7,13 @@ repo = git.Repo(".")
 
 def get_current_project_version(projectName):
     print(f"Getting version for {projectName}")
-    tags = list(filter(lambda tag: tag.name.startswith(projectName), repo.tags))
+    tags = list(filter(lambda tag: tag.startswith("v") and tag.name.endswith(projectName), repo.tags))
     if not tags:
         latest = "0.0.0"
     else:
         by_date = sorted(tags, key=lambda tag: tag.commit.committed_datetime)
-        tagName = by_date[-1].name
-        _, latest = tagName.rsplit("-", 1)
+        tagName = by_date[-1].name[1:]
+        latest, _ = tagName.rsplit("-", 1)
     print(f"Current version for {projectName} is {latest}")
     return semver.Version.parse(latest)
 def bump_version(version):
