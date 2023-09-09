@@ -28,4 +28,4 @@ if __name__ == "__main__":
     for project in projects:
         current_version = get_current_project_version(project)
         bumped = bump_version(current_version)
-        # repo.create_tag(f"v{bumped}-{project}")
+        repo.create_tag(f"v{bumped}-{project}")
